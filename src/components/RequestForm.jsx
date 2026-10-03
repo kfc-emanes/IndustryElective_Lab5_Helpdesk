@@ -47,7 +47,7 @@ export default function RequestForm({ onAddRequest }) {
                     placeholder="Describe your issue..."
                     value={concern}
                     onChange={(e) => setConcern(e.target.value)}    
-                />
+                    />
                 </div>
                 <div>
                     <label htmlFor="priority">Priority:</label>
