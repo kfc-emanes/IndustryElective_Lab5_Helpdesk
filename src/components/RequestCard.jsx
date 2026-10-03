@@ -8,9 +8,11 @@ export default function RequestCard({ request }) {
                 <p><strong>Concern:</strong> {request.concern}</p>
                 
                 <div className="card-actions">
-                    {request.status === "Waiting" && <button>Resolve</button>}
-                <button>Delete</button> 
+                    {request.status === "Waiting" && (
+                        <button onClick={() => onResolve(request.id)}>Resolve</button>
+                    )}
+                    <button onClick={() => onDelete(request.id)}>Delete</button>
+                </div>
             </div>
-        </div>
     );
 }

@@ -9,7 +9,7 @@ export default function RequestForm({ onAddRequest }) {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        if (!studentName.trim || !concern.trim()) return;
+        if (!studentName.trim() || !concern.trim()) return; 
 
         const newRequest = {
             id: crypto.randomUUID(),
