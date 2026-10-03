@@ -1,7 +1,7 @@
 import React from 'react';
 import RequestCard from './RequestCard.jsx';
 
-export default function RequestList({ requests, filter }) {
+export default function RequestList({ requests, filter, onResolve, onDelete }) {
     const filteredRequests = requests.filter(req => filter === 'All' || req.status === filter);
 
     const sortedRequests = [...filteredRequests].sort((a, b) => {

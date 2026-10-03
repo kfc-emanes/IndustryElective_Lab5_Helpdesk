@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function RequestCard({ request }) {
+export default function RequestCard({ request, onResolve, onDelete }) {
     return (
         <div className={`request-card ${request.priority.toLowerCase()}`}>
                 <h3>{request.studentName} <span>({request.priority} Priority)</span></h3>

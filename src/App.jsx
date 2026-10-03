@@ -9,7 +9,35 @@ export default function App() {
   const { theme } = useTheme();
   const [filter, setFilter] = useState('All');
 
-  const [requests, setRequests] = useState([]);
+  //task3 starts here. this was a doozy
+  //state initializer to browser local storage
+  const [requests, setRequests] = useState(() => {
+    try {
+      const saved = JSON.parse(localStorage.getItem("helpdesk-requests") ?? "[]");
+      return Array.isArray(saved) ? saved : [];
+    } catch {
+      return [];
+    }
+  });
+
+  useEffect(() => {
+    try {
+      localStorage.setItem("helpdesk-requests", JSON.stringify(requests));
+    } catch {
+      console.warn("Failed to save requests to local storage.");
+    }
+  }, [requests]);
+
+  const waitingCount = requests.filter(req => req.status === "Waiting").length;
+
+  useEffect(() => {
+    const originalTitle = document.title;
+    document.title = `Helpdesk Queue (${waitingCount} waiting)`;
+    return () => {
+      document.title = originalTitle;
+    };
+  }, [waitingCount]);
+  //task 3 ends here
 
   const addRequest = (newRequest) => {
     setRequests(previous => [...previous, newRequest]);
